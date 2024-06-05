@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.4/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Age and Gender Detection Results</title>
+</head>
+<body class="bg-gradient-to-r from-indigo-200 via-indigo-300 to-indigo-400 ...">
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold text-center text-gray-800 my-6">Age and Gender Detection Results</h1>
+        <% if (uploadedImagePath) { %>
+            <div class="grid place-items-center my-6">
+                <img src="<%= uploadedImagePath %>" alt="Uploaded Image" class="rounded-lg shadow-lg w-64 h-auto"/>
+            </div>
+        <% } %>
+        <div class="grid place-items-center mb-6">
+            <% if (ageGenderData && ageGenderData.models && ageGenderData.models.length > 0) { %>
+                <% ageGenderData.models.forEach(function(model) { %>
+                    <% if (model.output && Array.isArray(model.output)) { %>
+                        <% model.output.forEach(function(output) { %>
+                            <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 ease-in-out mb-4">
+                                <p class="text-lg text-gray-700">Age: <span class="font-semibold"><%= output.age %></span></p>
+                                <p class="text-lg text-gray-700">Dominant Gender: <span class="font-semibold"><%= output.dominant_gender %></span></p>
+                                <p class="text-lg text-gray-700">Gender Confidence: 
+                                    <span class="font-semibold">Man: <%= output.gender.Man.toFixed(2) %>%</span>, 
+                                    <span class="font-semibold">Woman: <%= output.gender.Woman.toFixed(2) %>%</span>
+                                </p>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p class="text-lg text-red-500">Error: Try with different image.</p>
+                    <% } %>
+                <% }); %>
+            <% } else { %>
+                <p class="text-lg text-red-500">No data available.</p>
+            <% } %>
+        </div>
+        <div class="grid place-items-center">
+            <a href="/" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded">
+                Try another image
+            </a>
+        </div>
+    </div>
+</body>
+<footer class="text-center p-4">
+    &copy; 2024 ivanm. All Rights Reserved.
+  </footer>
+</html>

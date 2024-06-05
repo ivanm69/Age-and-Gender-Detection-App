@@ -1,0 +1,32 @@
+#Dependency directories
+node_modules/
+
+# Debug log from npm
+npm-debug.log*
+
+# Yarn error logs
+yarn-error.log
+
+# Environment variables
+.env
+
+# Production build directory
+/dist
+
+# OSX folder attributes
+.DS_Store
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional editor config files
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+logs
+*.log
